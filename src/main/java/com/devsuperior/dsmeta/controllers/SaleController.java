@@ -1,14 +1,17 @@
 package com.devsuperior.dsmeta.controllers;
 
+import com.devsuperior.dsmeta.dto.SaleSummaryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.devsuperior.dsmeta.dto.SaleMinDTO;
 import com.devsuperior.dsmeta.services.SaleService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/sales")
@@ -29,9 +32,19 @@ public class SaleController {
 		return null;
 	}
 
-	@GetMapping(value = "/summary")
+	//@GetMapping(value = "/summary")
 	public ResponseEntity<?> getSummary() {
 		// TODO
 		return null;
 	}
+
+
+
+	@GetMapping(value = "/summary")
+	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary() {
+		 //List<SaleSummaryDTO> lista = service.getSalesSummary();
+		return ResponseEntity.ok(service.getSalesSummary());
+	}
+
+
 }
