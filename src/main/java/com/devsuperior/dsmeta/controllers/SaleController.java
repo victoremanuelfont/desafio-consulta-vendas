@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.devsuperior.dsmeta.dto.SaleMinDTO;
 import com.devsuperior.dsmeta.services.SaleService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -38,12 +40,18 @@ public class SaleController {
 		return null;
 	}
 
-
+	//@GetMapping(value = "/summary")
+	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary() {
+		return ResponseEntity.ok(service.getSalesSummary());
+	}
 
 	@GetMapping(value = "/summary")
-	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary() {
-		 //List<SaleSummaryDTO> lista = service.getSalesSummary();
-		return ResponseEntity.ok(service.getSalesSummary());
+	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary(
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate minDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate maxDate) {
+
+		List<SaleSummaryDTO> summary = service.getSalesSummary(minDate, maxDate);
+		return ResponseEntity.ok(summary);
 	}
 
 

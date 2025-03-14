@@ -33,4 +33,10 @@ public class SaleService {
 		return repository.getSalesSummary(result, today);
 	}
 
+	public List<SaleSummaryDTO> getSalesSummary(LocalDate minDate, LocalDate maxDate){
+		return repository.getSalesSummary(minDate, maxDate);
+	}
+
+
+
 }
