@@ -57,8 +57,14 @@ public class SaleController {
 
 
 	@GetMapping(value = "/report")
-	public ResponseEntity<Page<SaleReportDTO>> getReport(Pageable pageable){
-		return ResponseEntity.ok(service.getSaleReport(pageable));
+	public ResponseEntity<Page<SaleReportDTO>> getReport(
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate minDate,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate maxDate,
+			Pageable pageable){
+
+
+
+		return ResponseEntity.ok(service.getSaleReport(minDate,maxDate,pageable));
 	}
 
 

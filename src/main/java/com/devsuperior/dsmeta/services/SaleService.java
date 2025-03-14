@@ -43,11 +43,18 @@ public class SaleService {
 		return repository.getSalesSummary(minDate, maxDate);
 	}
 
-	public Page<SaleReportDTO> getSaleReport(Pageable pageable) {
+	public Page<SaleReportDTO> getSaleReport(LocalDate minDate, LocalDate maxDate, Pageable pageable) {
 		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 		LocalDate result = today.minusYears(1L); // Data de 12 meses atrás
 
-		return repository.getSaleReport(result, today, pageable);
+		if (minDate == null) {
+			minDate = result;
+		}
+		if (maxDate == null) {
+			maxDate = today;
+		}
+
+		return repository.getSaleReport( minDate,maxDate, pageable);
 	}
 
 
