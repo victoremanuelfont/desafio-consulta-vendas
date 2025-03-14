@@ -3,10 +3,6 @@ package com.devsuperior.dsmeta.dto;
 import com.devsuperior.dsmeta.entities.Sale;
 import com.devsuperior.dsmeta.entities.Seller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class SaleSummaryDTO {
 
     private String sellerName;
@@ -20,8 +16,8 @@ public class SaleSummaryDTO {
     public SaleSummaryDTO(Seller entity) {
        sellerName = entity.getName();
         total = entity.getSales().stream()
-                .mapToDouble(Sale::getAmount) // Pega o campo amount de cada Sale
-                .sum(); // Soma todos os valores
+                .mapToDouble(Sale::getAmount)
+                .sum();
     }
 
     public String getSellerName() {

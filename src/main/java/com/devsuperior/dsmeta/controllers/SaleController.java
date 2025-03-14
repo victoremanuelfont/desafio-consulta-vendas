@@ -29,12 +29,6 @@ public class SaleController {
 		return ResponseEntity.ok(dto);
 	}
 
-	//@GetMapping(value = "/report")
-	public ResponseEntity<?> getReport() {
-		// TODO
-		return null;
-	}
-
 
 	@GetMapping(value = "/summary")
 	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary(
@@ -44,16 +38,6 @@ public class SaleController {
 		List<SaleSummaryDTO> summary = service.getSalesSummary(minDate, maxDate);
 		return ResponseEntity.ok(summary);
 	}
-
-	/*@GetMapping(value = "/report")
-	public ResponseEntity<Page<SaleReportDTO>> getReport(
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate minDate,
-			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate maxDate,
-			@RequestParam (name = "name", defaultValue = "") String name, Pageable pageable){
-
-				Page<SaleReportDTO> report = service.getReport(minDate,maxDate, name, pageable);
-				return ResponseEntity.ok(report) ;
-	}  */
 
 
 	@GetMapping(value = "/report")

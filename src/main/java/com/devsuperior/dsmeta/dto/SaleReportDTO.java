@@ -1,7 +1,6 @@
 package com.devsuperior.dsmeta.dto;
 
 import com.devsuperior.dsmeta.entities.Sale;
-import com.devsuperior.dsmeta.entities.Seller;
 
 import java.time.LocalDate;
 
