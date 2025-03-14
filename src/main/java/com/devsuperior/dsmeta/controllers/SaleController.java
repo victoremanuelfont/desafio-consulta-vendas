@@ -60,11 +60,10 @@ public class SaleController {
 	public ResponseEntity<Page<SaleReportDTO>> getReport(
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate minDate,
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate maxDate,
+			@RequestParam(required = false, defaultValue = "") String name,
 			Pageable pageable){
 
-
-
-		return ResponseEntity.ok(service.getSaleReport(minDate,maxDate,pageable));
+		return ResponseEntity.ok(service.getSaleReport(minDate,maxDate,name,pageable));
 	}
 
 

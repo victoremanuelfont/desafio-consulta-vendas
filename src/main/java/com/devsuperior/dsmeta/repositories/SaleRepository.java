@@ -33,8 +33,9 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
 
     @Query(value = "SELECT new com.devsuperior.dsmeta.dto.SaleReportDTO (obj.id, obj.date, obj.amount, obj.seller.name) " +
             "FROM Sale obj " +
-            "WHERE obj.date BETWEEN :minDate AND :maxDate " )
-    Page<SaleReportDTO>getSaleReport(@Param("minDate") LocalDate minDate, @Param("maxDate")LocalDate maxDate, Pageable pageable);
+            "WHERE obj.date BETWEEN :minDate AND :maxDate " +
+            "AND (:name = '' OR LOWER(obj.seller.name) LIKE LOWER(CONCAT('%', :name, '%')))")
+    Page<SaleReportDTO>getSaleReport(@Param("minDate") LocalDate minDate, @Param("maxDate")LocalDate maxDate, @Param("name") String name, Pageable pageable);
 
 
 
