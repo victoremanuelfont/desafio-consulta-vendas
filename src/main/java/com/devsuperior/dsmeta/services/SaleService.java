@@ -27,13 +27,16 @@ public class SaleService {
 		return new SaleMinDTO(entity);
 	}
 
-	public List<SaleSummaryDTO> getSalesSummary(){
-		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
-		LocalDate result = today.minusYears(1L); // Data de 12 meses atrás
-		return repository.getSalesSummary(result, today);
-	}
-
 	public List<SaleSummaryDTO> getSalesSummary(LocalDate minDate, LocalDate maxDate){
+		LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+		LocalDate result = today.minusYears(1L);
+
+		if (minDate == null) {
+			minDate = result;
+		}
+		if (maxDate == null) {
+			maxDate = today;
+		}
 		return repository.getSalesSummary(minDate, maxDate);
 	}
 

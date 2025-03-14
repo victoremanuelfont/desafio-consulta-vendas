@@ -40,11 +40,6 @@ public class SaleController {
 		return null;
 	}
 
-	//@GetMapping(value = "/summary")
-	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary() {
-		return ResponseEntity.ok(service.getSalesSummary());
-	}
-
 	@GetMapping(value = "/summary")
 	public ResponseEntity<List<SaleSummaryDTO>> getSalesSummary(
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate minDate,
